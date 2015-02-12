@@ -933,6 +933,8 @@ function(ocv_add_perf_tests)
         add_custom_command(TARGET "opencv_perf_${name}"
                            POST_BUILD
                            COMMAND link.exe /edit /APPCONTAINER:NO $(TargetPath))
+
+        target_compile_options("opencv_perf_${name}" PUBLIC "/ZW")
       endif()
 
       if(NOT BUILD_opencv_world)
@@ -999,6 +1001,7 @@ function(ocv_add_accuracy_tests)
                            POST_BUILD
                            COMMAND link.exe /edit /APPCONTAINER:NO $(TargetPath))
 
+        target_compile_options("opencv_test_${name}" PUBLIC "/ZW")
       endif()
       if(NOT BUILD_opencv_world)
         _ocv_add_precompiled_headers(${the_target})
