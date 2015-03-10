@@ -106,7 +106,7 @@
     #elif defined HAVE_GCD
         #include <dispatch/dispatch.h>
         #include <pthread.h>
-    #elif defined HAVE_WINRT
+    #elif defined WINRT
         #include <ppltasks.h>
     #elif defined HAVE_CONCURRENCY
         #include <ppl.h>
@@ -121,7 +121,7 @@
 #  define CV_PARALLEL_FRAMEWORK "openmp"
 #elif defined HAVE_GCD
 #  define CV_PARALLEL_FRAMEWORK "gcd"
-#elif defined HAVE_WINRT
+#elif defined WINRT
 #  define CV_PARALLEL_FRAMEWORK "winrt-concurrency"
 #elif defined HAVE_CONCURRENCY
 #  define CV_PARALLEL_FRAMEWORK "ms-concurrency"
@@ -184,7 +184,7 @@ namespace
         ProxyLoopBody* ptr_body = static_cast<ProxyLoopBody*>(context);
         (*ptr_body)(cv::Range((int)index, (int)index + 1));
     }
-#elif defined HAVE_WINRT || defined HAVE_CONCURRENCY
+#elif defined WINRT || defined HAVE_CONCURRENCY
     class ProxyLoopBody : public ParallelLoopBodyWrapper
     {
     public:
